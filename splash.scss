@@ -24,25 +24,31 @@ ol, ul {
 	margin: 2rem 0;
 	padding: 0;
 }
+a {
+	color: #000;
+}
 
 // nav
 nav {
-	padding: .5rem 4rem; 
+	padding: 1rem;
+	max-width: 40rem;
 }
 
 // logo
 .logo {
 	border: none;
-	color: #4b0082;
 	display: inline-block;
 	font-family: 'Rasa', sans-serif;
 	font-size: 1.5rem;
 	font-weight: 600;
 	line-height: 1.2;
-	margin: 0 0 2rem 0;
 	text-decoration: none;
 	&:hover {
 		text-decoration: none;
+	}
+	img {
+		display: block;
+		height: 30px;
 	}
 }
 
@@ -60,12 +66,19 @@ nav {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    &.sustainability {
+	    li {
+			&::before {
+			    content: url(checkmark-sustainability.svg);
+			}
+	    }
+	}
 	li {
 		font-weight: 600;
 		display: block;
 		margin-bottom: 1rem;
 		&::before {
-		    content: url(checkmark.svg);
+		    content: url(check.svg);
 		    color: #fff;
 		    display: inline-block;
 		    margin-right: .5rem;
@@ -118,10 +131,10 @@ input[type = "submit"] {
 		}
 	}
 	&.purple {
-		background: #6c0082;
+		background: #37A8C0;
 		color: #fff;
 		&:hover {
-			background: hsla(290, 100%, 25%, .8);
+			background: hsla(180.4, 55.5%, 48.4%, .8);
 			box-shadow: 0 3px 3px 0 rgba(0,0,0,0.18), 0 1px 7px 0 rgba(0,0,0,0.13), 0 3px 1px -1px rgba(0,0,0,0.23);
 		}
 	}
@@ -129,18 +142,13 @@ input[type = "submit"] {
 
 // hero-section
 .hero-section {
-	overflow: hidden;
-    position: relative;
+	padding: 0 1rem;
+	max-width: 60rem;
+	margin: 3rem auto 0 auto;
 	p {
 		font-size:1.125rem;
 		font-weight:100;
-		margin: 1rem auto 2rem auto;
-	}
-}
-.overlayed-content {
-	padding: 2rem 1rem;
-    position: relative;
-    z-index: 1;
+	}	
 }
 
 // signup form
@@ -189,7 +197,7 @@ input[type = "submit"] {
 		}
 	}
 	.read-now {
-		color: #007fcc;
+		color: #37A8C0;
 		font-weight: 600; 
 	}
 	img {
@@ -203,8 +211,12 @@ input[type = "submit"] {
 	color: #fff;
 }
 .stripe-grey {
-	background-color: rgb(246, 246, 246);
+	background: rgba(0,0,0,0.03);
 	color: #000;
+}
+.stripe-sustainability {
+	background-color: #006994;
+	color: #fff;
 }
 
 // hide on mobile
@@ -213,30 +225,32 @@ input[type = "submit"] {
 }
 
 @media (min-width: 600px ) {
-	/* nav {
-		padding: 1rem 4rem;
-		margin: 0 auto 0rem auto;
+	nav {
 		ul {
 			display: flex;
-			margin: 0rem;
+			margin: .5rem 0 0 0;
 			float: right;
 			li {
 				display: inline-block;
 				margin: 0 .875rem;
 				a {
 					text-decoration: none;
-					color: #000;
+					color: #efefef;
 					font-weight: 600;
 					font-size: 1rem;
 					padding: 0;
 					border: none;
+					&:hover {
+						transition: color 0.2s ease;
+						color: #fff;
+					}
 					&.current {
 						color: #3300FF;
 					}
 				}
 			}
 		}
-	} */
+	}
 	.header {
 		display: block;
 	}
@@ -253,6 +267,9 @@ input[type = "submit"] {
 	h3 {
 		font-size: 2.5rem;
 	}
+	h4 {
+		font-size: 1.25rem;
+	}
 	#mc_embed_signup {
 		input.wave-email {
 			font-size: .875rem;
@@ -263,6 +280,7 @@ input[type = "submit"] {
 		display: initial;
 	}
 	.hero-section {
+		margin: 10rem auto 0 auto;
 		clear: both;
 		background: none;
 		min-height: 48vh;
@@ -270,31 +288,7 @@ input[type = "submit"] {
 			font-size:1.5rem;
 		}
 	}
-	.overlayed-content {
-	    display: flex;
-	    min-height: 65vh;
-	    flex-direction: column;
-		background-image: url('splash-bg.jpg');
-		background-size: cover;
-		padding: 2rem 4rem;
-	}
 	// polygon
-	#polygon {
-	    top: 0px;
-	    left: 0px;
-	    position: absolute;
-	    height: 100%;
-	    z-index: 5;
-	    right: 10px;
-	    transform-origin: 0px 0px;
-	    transform: skewX(-25deg);
-	    background: rgb(255, 255, 255);
-	}
-	.title-section {
-		z-index: 9999;
-		position: relative;
-    	margin-top: 60px;
-	}
 	.features-section {
 		grid-gap: 2rem;
 		padding: 2rem 5rem;
@@ -331,6 +325,29 @@ input[type = "submit"] {
 		padding: 1rem 2rem;
 		width: initial;
 	}
+	h2 {
+		white-space: nowrap;
+		overflow: hidden;
+		border-right: 20px solid #000;
+		animation: 
+	 	animated-text 1s steps(29,end) .5s 1 normal both,
+        animated-cursor 600ms steps(29,end) infinite,
+        animated-border 0s 1.5s forwards;
+	}
+	/* text animation */
+	@keyframes animated-text {
+	  from{width: 0;}
+	  to {width: 400px;}
+	}
+	@keyframes animated-border {
+	  to {border-right: 0;}
+	}
+
+	/* cursor animations */
+	@keyframes animated-cursor {
+	  from{border-right-color: rgba(0,0,0,.75);}
+	  to{border-right-color: transparent;}
+	}
 }
 @media screen and (min-width: 52em) {
 	#polygon {
@@ -349,4 +366,3 @@ input[type = "submit"] {
 	margin: 0 auto;
 	display: block;
 }
-
